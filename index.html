@@ -1,56 +1,380 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N3Secure | Yeni Nesil Güvenlik Teknolojileri</title>
+    <title>Güvenli Alan | Kadınlar İçin Dijital Kalkan</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            teal: '#00A896',   /* Güven Rengi */
+                            purple: '#9C27B0', /* Dayanışma Rengi */
+                            dark: '#121212',   /* Arka Plan */
+                            darker: '#0a0a0a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(0, 168, 150, 0.5)',
+                        'purple-glow': '0 0 20px rgba(156, 39, 176, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { background-color: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; }
-        .neon-text { text-shadow: 0 0 10px #22c55e; }
+        /* Özel CSS Efektleri */
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Arka Plan Bulanık Renk Topları (Atmosphere) */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse 10s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        /* Glassmorphism Kart Stili */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 168, 150, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        /* Animasyonlar için Fade-In */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CSS ile Telefon Mockup Çizimi */
+        .phone-mockup {
+            border: 12px solid #2d2d2d;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            box-shadow: 0 0 50px rgba(0, 168, 150, 0.2);
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 25px;
+            background: #2d2d2d;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 10;
+        }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-brand-teal selection:text-white relative">
 
-    <nav class="flex justify-between items-center p-6 max-w-6xl mx-auto">
-        <div class="text-2xl font-bold tracking-widest text-green-500">N3<span class="text-white">SECURE</span></div>
-        <div>
-            <a href="mailto:n3secure@gmail.com class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-full transition">İletişime Geç</a>
+    <div class="blob bg-brand-teal w-96 h-96 top-0 left-0 rounded-full mix-blend-multiply"></div>
+    <div class="blob bg-brand-purple w-96 h-96 bottom-0 right-0 rounded-full mix-blend-multiply"></div>
+
+    <nav class="fixed w-full z-50 glass-card border-b-0 rounded-none top-0">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand-teal to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-neon">
+                    <i class="fa-solid fa-shield-cat"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight text-white">Güvenli<span class="text-brand-teal">Alan</span></span>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#download" class="bg-brand-teal hover:bg-teal-600 text-white px-6 py-2.5 rounded-full font-semibold transition shadow-neon flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Hemen İndir
+                </a>
+            </div>
+            
+            <div class="md:hidden text-2xl text-white">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
     </nav>
 
-    <header class="text-center mt-20 px-4">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6">Görünmez Kalkan. <br><span class="text-green-500 neon-text">N3Secure.</span></h1>
-        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-            KADES'ten daha akıllı, gölgeden daha sessiz. <br>
-            Yapay zeka destekli, "Hayalet Mod" özellikli yeni nesil mobil güvenlik teknolojisi.
-        </p>
-        <div class="flex justify-center gap-4">
-            <a href="#" class="border border-green-500 text-green-400 px-8 py-3 rounded-lg hover:bg-green-500 hover:text-white transition">Demoyu İzle</a>
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="space-y-8 reveal">
+                <div class="inline-block px-4 py-1 rounded-full border border-brand-purple/50 bg-brand-purple/10 text-brand-purple font-medium text-sm">
+                    🚀 Yeni Nesil Güvenlik Teknolojisi
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight">
+                    Yalnız Değilsin. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-brand-purple">Güvenli Alan</span> Seninle.
+                </h1>
+                <p class="text-gray-400 text-lg lg:text-xl max-w-lg">
+                    Tehlike anında ekranı açmadan, sadece ses tuşlarıyla veya sallayarak gizli sinyal gönder. Kadınlar için geliştirilmiş dijital güvenlik kalkanı.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 pt-4" id="download">
+                    <button class="flex items-center justify-center gap-3 bg-white text-black px-6 py-3.5 rounded-xl font-bold hover:bg-gray-200 transition">
+                        <i class="fa-brands fa-google-play text-2xl text-brand-teal"></i>
+                        <div class="text-left leading-tight">
+                            <div class="text-xs uppercase font-semibold text-gray-500">Google Play'den</div>
+                            <div class="text-lg">İndir</div>
+                        </div>
+                    </button>
+                    <button class="flex items-center justify-center gap-3 glass-card px-6 py-3.5 rounded-xl font-bold hover:bg-white/10 transition border border-white/20">
+                        <i class="fa-brands fa-apple text-2xl text-white"></i>
+                        <div class="text-left leading-tight">
+                            <div class="text-xs uppercase font-semibold text-gray-400">App Store'dan</div>
+                            <div class="text-lg">İndir</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex justify-center lg:justify-end reveal relative">
+                <div class="absolute w-80 h-80 bg-brand-teal rounded-full blur-[100px] opacity-20 -z-10 animate-pulse"></div>
+                
+                <div class="phone-mockup w-[300px] h-[600px] bg-brand-darker relative">
+                    <div class="phone-notch"></div>
+                    <div class="h-full w-full flex flex-col justify-between p-6 pt-12 bg-gradient-to-b from-brand-dark to-gray-900">
+                        <div class="flex justify-between text-gray-400 text-sm">
+                            <span>9:41</span>
+                            <div class="flex gap-1">
+                                <i class="fa-solid fa-signal"></i>
+                                <i class="fa-solid fa-wifi"></i>
+                                <i class="fa-solid fa-battery-full"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-10">
+                            <div class="w-24 h-24 mx-auto rounded-full border-4 border-red-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(239,68,68,0.4)] animate-pulse">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center">
+                                    <span class="text-2xl font-bold text-white">SOS</span>
+                                </div>
+                            </div>
+                            <h3 class="mt-6 text-2xl font-bold text-white">Yardım Çağrılıyor...</h3>
+                            <p class="text-sm text-gray-400 mt-2">Konumunuz 3 kişiye iletildi.</p>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-xl p-3 mt-4 h-40 opacity-50 relative overflow-hidden">
+                             <div class="absolute inset-0 flex items-center justify-center">
+                                 <i class="fa-solid fa-map-location-dot text-4xl text-brand-teal"></i>
+                             </div>
+                        </div>
+
+                        <div class="flex justify-between text-2xl text-gray-500 mt-auto pt-6 border-t border-gray-800">
+                            <i class="fa-solid fa-house text-brand-teal"></i>
+                            <i class="fa-solid fa-shield"></i>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </header>
 
-    <section class="max-w-6xl mx-auto mt-32 px-4 grid md:grid-cols-3 gap-8 mb-20">
-        <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <div class="text-4xl mb-4">👻</div>
-            <h3 class="text-xl font-bold text-white mb-2">Hayalet Mod</h3>
-            <p class="text-slate-400">Uygulama kendini "Hesap Makinesi" olarak gizler. Tehlike anında fark edilmez.</p>
-        </div>
-        <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <div class="text-4xl mb-4">📹</div>
-            <h3 class="text-xl font-bold text-white mb-2">Gizli Kara Kutu</h3>
-            <p class="text-slate-400">Ekran kapalıyken bile arka planda video/ses kaydı alır ve buluta yedekler.</p>
-        </div>
-        <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <div class="text-4xl mb-4">👋</div>
-            <h3 class="text-xl font-bold text-white mb-2">Shake & Alert</h3>
-            <p class="text-slate-400">Telefonu açmaya gerek yok. Salladığınızda acil durum protokolü devreye girer.</p>
+    <section class="py-20 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Güvenliğin İçin <span class="text-brand-teal">Sınırları Kaldırdık</span></h2>
+                <p class="text-gray-400">Standart bir panik butonundan çok daha fazlası.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="glass-card p-8 rounded-2xl reveal hover:shadow-neon group">
+                    <div class="w-14 h-14 bg-brand-teal/20 text-brand-teal rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Gizli Sinyal</h3>
+                    <p class="text-gray-400 text-sm">Telefon cebindeyken ses kısma tuşuna 3 kez bas, kimse fark etmeden yardım iste.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal group">
+                    <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Canlı Konum</h3>
+                    <p class="text-gray-400 text-sm">Güvendiğin kişilere ve yetkililere anlık olarak hareketli GPS konumunu gönder.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal group">
+                    <div class="w-14 h-14 bg-brand-purple/20 text-brand-purple rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Kadın Ağı</h3>
+                    <p class="text-gray-400 text-sm">Sadece onaylı kadın kullanıcıların olduğu anonim destek ve sohbet ağı.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl reveal hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] group border-red-500/30">
+                    <div class="w-14 h-14 bg-red-500/20 text-red-500 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Acil Durum SOS</h3>
+                    <p class="text-gray-400 text-sm">Tek dokunuşla yüksek sesli siren çal veya sessizce polise bildirim gönder.</p>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <footer class="text-center py-10 text-slate-600 border-t border-slate-800 mt-20">
-        <p>&copy; 2025 N3Secure Technology. Tüm Hakları Saklıdır.</p>
+    <section class="py-20 bg-black/30">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal">Nasıl <span class="text-brand-purple">Çalışır?</span></h2>
+            
+            <div class="space-y-4">
+                <div class="glass-card p-6 rounded-xl flex items-center gap-6 reveal">
+                    <div class="text-4xl font-black text-brand-teal/20">01</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Uygulamayı İndir ve Kaydol</h4>
+                        <p class="text-sm text-gray-400">Numaranı doğrula ve güvenilir 3 kişiyi rehberden seç.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-6 reveal">
+                    <div class="text-4xl font-black text-brand-teal/20">02</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white">Gizli Tuşu Ata</h4>
+                        <p class="text-sm text-gray-400">Ses açma veya kapama tuşunu "Acil Durum Tetikleyicisi" olarak ayarla.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-center gap-6 reveal border-brand-teal/30 shadow-neon">
+                    <div class="text-4xl font-black text-brand-teal">03</div>
+                    <div>
+                        <h4 class="text-lg font-bold text-brand-teal">Tehlike Anında Tuşa Bas</h4>
+                        <p class="text-sm text-gray-300">Telefon cebindeyken tuşa bas. Ekran açılmaz, saldırgan fark etmez.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 reveal">Kullanıcı <span class="text-brand-teal">Deneyimleri</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-xl reveal">
+                    <div class="flex text-yellow-400 mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"Gece vardiyasından dönerken artık korkmuyorum. 'Takip Et' modu sayesinde eşim beni canlı izliyor."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-brand-teal">AY</div>
+                        <div>
+                            <div class="font-bold text-sm">Ayşe Y.</div>
+                            <div class="text-xs text-gray-500">İstanbul</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl reveal">
+                    <div class="flex text-yellow-400 mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"KADES güzel ama bu uygulamanın 'Hayalet Modu' gerçekten devrim niteliğinde. Kimse anlamıyor."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-brand-purple">ZM</div>
+                        <div>
+                            <div class="font-bold text-sm">Zeynep M.</div>
+                            <div class="text-xs text-gray-500">İzmir</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-xl reveal">
+                    <div class="flex text-yellow-400 mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"Sadece acil durum değil, kadın dayanışma ağındaki sohbetler bana çok iyi geldi. Teşekkürler."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center font-bold text-blue-400">EK</div>
+                        <div>
+                            <div class="font-bold text-sm">Elif K.</div>
+                            <div class="text-xs text-gray-500">Ankara</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 bg-black/50 py-12 px-6 mt-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <div class="text-center md:text-left">
+                <div class="text-xl font-bold text-white mb-2">Güvenli<span class="text-brand-teal">Alan</span></div>
+                <p class="text-gray-500 text-sm">© 2025 N3Secure Technology. Tüm hakları saklıdır.</p>
+            </div>
+
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-brand-teal transition text-xl"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-brand-teal transition text-xl"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-brand-teal transition text-xl"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div class="text-sm">
+                <a href="mailto:admin@guvenlialan.com" class="text-brand-teal hover:underline">admin@guvenlialan.com</a>
+            </div>
+
+        </div>
     </footer>
 
+    <script>
+        // Sayfa kaydırıldıkça öğelerin belirmesini sağlayan kod
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+        
+        // İlk yüklemede tetikle
+        reveal();
+    </script>
 </body>
 </html>
